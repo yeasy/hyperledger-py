@@ -1,11 +1,23 @@
 # hyperledger-py
-Python client for [hyperledger](https://github.com/hyperledger/hyperledger)
+Python client for [Hyperledger](https://github.com/hyperledger/hyperledger).
 
+This project will follow the [Hyperledger API](https://github.com/hyperledger/fabric/tree/master/docs/API) to let uses to use those Hyperledger API by import a simple python library.
 
 ## Installation
+The latest stable version is always available on PyPi.
+```sh
+$ pip install docker-py
+```
 
+The latest `dev` version is on [github](https://github.com/yeasy/hyperledger-py).
+```sh
+$ git clone https://github.com/yeasy/hyperledger-py.git
+$ cd hyperledger-py
+$ python setup install
+```
 
 ## Documentation
+The source is available in the `docs/` directory.
 
 ## Acknowledgement
 
