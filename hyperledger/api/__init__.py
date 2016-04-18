@@ -13,3 +13,4 @@
 
 from .block import BlockApiMixin
 from .blockchain import BlockChainApiMixin
+from .chaincode import ChainCodeApiMixin

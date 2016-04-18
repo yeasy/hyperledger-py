@@ -21,7 +21,11 @@ The source is available in the `docs/` directory.
 
 ## Acknowledgement
 
-This work is highly inspired by the [Hyperledger](https://github.com/hyperledger/hyperledger) project and the [docker-py](https://github.com/docker/docker-py) project.
+This work is highly inspired by the following projects:
+
+ * [Hyperledger](https://github.com/hyperledger/hyperledger)
+ * [requests](https://pypi.python.org/pypi/requests)
+ * [docker-py](https://github.com/docker/docker-py)
 
 ## License
 

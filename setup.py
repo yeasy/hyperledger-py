@@ -13,27 +13,31 @@ requirements = [
     'websocket-client >= 0.32.0',
 ]
 
-extras_require = {
-    ':python_version < "3"': 'py2-ipaddress >= 3.4.1',
-}
-
 exec(open('hyperledger/version.py').read())
+
+with open('README.md') as f:
+    long_description = f.read()
 
 with open('./test-requirements.txt') as test_reqs_txt:
     test_requirements = [line for line in test_reqs_txt]
 
 
 setup(
-    name="hyperledger-py",
+    name='hyperledger',
     version=version,
+    keywords=('hyperledger', 'blockchain'),
+    license='Apache License v2.0',
     description="Python client for Hyperledger.",
-    url='https://github.com/hyperledger/hyperledger-py/',
+    long_description=long_description,
+    author='Baohua Yang',
+    author_email='yangbaohua@gmail.com',
+    url='https://github.com/yeasy/hyperledger-py/',
     packages=[
         'hyperledger', 'hyperledger.api', 'hyperledger.utils',
     ],
+    platforms='any',
     install_requires=requirements,
     tests_require=test_requirements,
-    extras_require=extras_require,
     zip_safe=False,
     test_suite='tests',
     classifiers=[
