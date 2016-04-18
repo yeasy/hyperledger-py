@@ -17,6 +17,7 @@ import websocket
 
 
 from . import api
+from . import auth
 from . import constants
 from . import errors
 
@@ -42,6 +43,7 @@ class Client(
         self.base_url = base_url
         self.timeout = timeout
         self._version = version
+        self._auth_configs = auth.load_config()
 
     def _set_request_timeout(self, kwargs):
         """Prepare the kwargs for an HTTP request by inserting the timeout
@@ -94,7 +96,7 @@ class Client(
 
         args = map(six.moves.urllib.parse.quote_plus, args)
 
-        if kwargs.get('versioned_api', True):
+        if kwargs.get('versioned_api', False): # TODO: should be True later
             return '{0}/v{1}{2}'.format(
                 self.base_url, self._version, pathfmt.format(*args)
             )

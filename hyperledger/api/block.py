@@ -13,7 +13,7 @@
 
 class BlockApiMixin(object):
 
-    def get(self, block=None):
+    def block_list(self, block=None):
         """
         Use the Block API to retrieve the contents of various blocks from the
         blockchain. The returned Block message structure is defined inside
