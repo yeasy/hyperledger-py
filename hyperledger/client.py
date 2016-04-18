@@ -30,7 +30,8 @@ def from_env(**kwargs):
 
 class Client(
         requests.Session,
-        api.BlockApiMixin):
+        api.BlockApiMixin,
+        api.BlockChainApiMixin):
     def __init__(self, base_url=None, version=constants.DEFAULT_API_VERSION,
                  timeout=constants.DEFAULT_TIMEOUT_SECONDS, tls=False):
         super(Client, self).__init__()

@@ -13,8 +13,10 @@
 
 class BlockApiMixin(object):
 
-    def block_list(self, block=None):
+    def block_get(self, block=None):
         """
+        GET /chain/blocks/{Block}
+
         Use the Block API to retrieve the contents of various blocks from the
         blockchain. The returned Block message structure is defined inside
         fabric.proto.

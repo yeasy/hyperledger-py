@@ -12,3 +12,4 @@
 
 
 from .block import BlockApiMixin
+from .blockchain import BlockChainApiMixin
