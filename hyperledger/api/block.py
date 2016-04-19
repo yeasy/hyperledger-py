@@ -13,7 +13,7 @@
 
 class BlockApiMixin(object):
 
-    def block_get(self, block=None):
+    def block_get(self, block):
         """
         GET /chain/blocks/{Block}
 

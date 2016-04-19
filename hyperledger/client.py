@@ -34,7 +34,10 @@ class Client(
         requests.Session,
         api.BlockApiMixin,
         api.BlockChainApiMixin,
-        api.ChainCodeApiMixin):
+        api.ChainCodeApiMixin,
+        api.NetworkApiMixin,
+        api.RegistrarApiMixin,
+        api.TransactionApiMixin):
     def __init__(self, base_url=None, version=constants.DEFAULT_API_VERSION,
                  timeout=constants.DEFAULT_TIMEOUT_SECONDS, tls=False):
         super(Client, self).__init__()
