@@ -23,6 +23,10 @@ $ python setup install
 ## Documentation
 The source is available in the `docs/` directory.
 
+## Contribution
+Please see [Contribution](CONTRIBUTION.md) and [Contribution 
+Instruction](docs/contribution.md).
+
 ## Acknowledgement
 
 This work is highly inspired by the following projects:
