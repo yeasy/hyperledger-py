@@ -17,7 +17,7 @@ from constants import DEFAULT_CHAINCODE_PATH, DEFAULT_CHAINCODE_FUNC, \
 
 class ChainCodeApiMixin(object):
     def _chaincode_action(self, jsonrpc="2.0", method="query", type=1,
-                          chaincodeID={"path": DEFAULT_CHAINCODE_PATH},
+                          chaincodeID={},
                           function=DEFAULT_CHAINCODE_FUNC,
                           args=DEFAULT_CHAINCODE_ARGS,
                           id=1, timeout=DEFAULT_TIMEOUT_SECONDS,
@@ -60,6 +60,29 @@ class ChainCodeApiMixin(object):
           "id": 1
         }
 
-        :return: id of the chaincode instance
+        :return: json obj of the chaincode instance
         """
-        return self._chaincode_action(method="deploy")
+        return self._chaincode_action(method="deploy",
+                                      chaincodeID={"path": DEFAULT_CHAINCODE_PATH})
+
+    def chaincode_invoke(self, chaincode_name):
+        """
+        {
+          "jsonrpc": "2.0",
+          "method": "invoke",
+          "params": {
+              "type": 1,
+              "chaincodeID":{
+                  "name":"52b0d803fc395b5e34d8d4a7cd69fb6aa00099b8fabed83504ac1c5d61a425aca5b3ad3bf96643ea4fdaac132c417c37b00f88fa800de7ece387d008a76d3586"
+              },
+              "ctorMsg": {
+                 "function":"invoke",
+                 "args":["a", "b", "100"]
+              }
+          },
+          "id": 3
+        }
+        :return: json obj of the chaincode instance
+        """
+        return self._chaincode_action(method="invoke",
+                                      chaincodeID={"name": chaincode_name})

@@ -3,11 +3,11 @@
 # Create the official release
 #
 
-if [ -z "$(command -v pandoc 2> /dev/null)" ]; then
-    >&2 echo "$0 requires http://pandoc.org/"
-    >&2 echo "Please install it and make sure it is available on your \$PATH."
-    exit 2
-fi
+#if [ -z "$(command -v pandoc 2> /dev/null)" ]; then
+#    >&2 echo "$0 requires http://pandoc.org/"
+#    >&2 echo "Please install it and make sure it is available on your \$PATH."
+#    exit 2
+#fi
 
 VERSION=$1
 REPO=yeasy/hyperledger-py
@@ -26,8 +26,8 @@ if  [[ $2 == 'upload' ]]; then
 fi
 
 
-pandoc -f markdown -t rst README.md -o README.rst || exit 1
+#pandoc -f markdown -t rst README.md -o README.rst || exit 1
 if [[ $2 == 'upload' ]]; then
     echo "##> Uploading sdist to pypi"
-    python setup.py sdist bdist_wheel upload
+    python ../setup.py sdist bdist_wheel upload
 fi
