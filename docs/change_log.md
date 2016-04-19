@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.0.6
+* Add more doc on the API usage.
+
 ## 0.0.5
 * Add network, registrar and transaction APIs.
 * Refine the function test case.

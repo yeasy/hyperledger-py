@@ -38,7 +38,8 @@ class Client(
         api.NetworkApiMixin,
         api.RegistrarApiMixin,
         api.TransactionApiMixin):
-    def __init__(self, base_url=None, version=constants.DEFAULT_API_VERSION,
+    def __init__(self, base_url=constants.DEFAULT_BASE_URL,
+                 version=constants.DEFAULT_API_VERSION,
                  timeout=constants.DEFAULT_TIMEOUT_SECONDS, tls=False):
         super(Client, self).__init__()
 
