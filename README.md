@@ -10,7 +10,7 @@ configuration and vagrant setup, please use this
 ## Installation
 The latest stable version is always available on PyPi.
 ```sh
-$ pip install hyperledger
+$ pip install hyperledger --upgrade
 ```
 
 The latest `dev` version is on [github](https://github.com/yeasy/hyperledger-py).
@@ -20,8 +20,13 @@ $ cd hyperledger-py
 $ python setup install
 ```
 
+## Change Logs
+See [change log](docs/change_log.md).
+
 ## Documentation
 The source is available in the `docs/` directory.
+
+* [API Usage](docs/api.md)
 
 ## Contribution
 Please see [Contribution](CONTRIBUTION.md) and [Contribution 
