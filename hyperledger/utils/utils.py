@@ -56,9 +56,9 @@ def match_path(path, pattern):
     return fnmatch('/'.join(path_components), pattern)
 
 def compare_version(v1, v2):
-    """Compare docker versions
+    """TODO: Compare hyperledger versions
 
-    >>> v1 = '1.9'
+    >>> v1 = '1.1'
     >>> v2 = '1.10'
     >>> compare_version(v1, v2)
     1
@@ -159,7 +159,7 @@ def parse_bytes(s):
         try:
             digits = longint(digits_part)
         except ValueError:
-            raise errors.DockerException(
+            raise errors.HyperledgerException(
                 'Failed converting the string value for memory ({0}) to'
                 ' an integer.'.format(digits_part)
             )
@@ -167,7 +167,7 @@ def parse_bytes(s):
         # Reconvert to long for the final result
         s = longint(digits * units[suffix])
     else:
-        raise errors.DockerException(
+        raise errors.HyperledgerException(
             'The specified value for memory ({0}) should specify the'
             ' units. The postfix should be one of the `b` `k` `m` `g`'
             ' characters'.format(s)
@@ -238,7 +238,7 @@ def kwargs_from_env(ssl_version=None, assert_hostname=None, environment=None):
         return params
 
     if not cert_path:
-        cert_path = os.path.join(os.path.expanduser('~'), '.docker')
+        cert_path = os.path.join(os.path.expanduser('~'), '.hyperledger')
 
     if not tls_verify and assert_hostname is None:
         # assert_hostname is a subset of TLS verification,

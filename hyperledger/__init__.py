@@ -13,6 +13,6 @@
 from .version import version, version_info
 
 __version__ = version
-__title__ = 'docker-py'
+__title__ = 'hyperledger'
 
 from .client import Client # flake8: noqa

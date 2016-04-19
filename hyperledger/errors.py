@@ -78,9 +78,7 @@ class TLSParameterError(HyperledgerException):
 
     def __str__(self):
         return self.msg + (". TLS configurations should map the Hyperledger CLI "
-                           "client configurations. See "
-                           "https://docs.docker.com/engine/articles/https/ "
-                           "for API details.")
+                           "client configurations. ")
 
 
 class NullResource(HyperledgerException, ValueError):

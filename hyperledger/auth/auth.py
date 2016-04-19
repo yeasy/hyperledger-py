@@ -69,7 +69,6 @@ def parse_auth(entries, raise_on_error=False):
         if 'auth' not in entry:
             # Starting with engine v1.11 (API 1.23), an empty dictionary is
             # a valid value in the auths config.
-            # https://github.com/docker/compose/issues/3265
             log.debug(
                 'Auth data for {0} is absent. Client might be using a '
                 'credentials store instead.'

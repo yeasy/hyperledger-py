@@ -10,6 +10,8 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
+
+import logging
 import requests
 import requests.exceptions
 import six
@@ -46,6 +48,8 @@ class Client(
         self.timeout = timeout
         self._version = version
         self._auth_configs = auth.load_config()
+
+        self.logger = logging.getLogger(__name__)
 
     def _set_request_timeout(self, kwargs):
         """Prepare the kwargs for an HTTP request by inserting the timeout
