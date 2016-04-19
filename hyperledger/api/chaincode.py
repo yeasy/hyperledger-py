@@ -12,7 +12,7 @@
 
 
 import json
-from constants import DEFAULT_CHAINCODE_PATH, DEFAULT_CHAINCODE_FUNC, \
+from ..constants import DEFAULT_CHAINCODE_PATH, DEFAULT_CHAINCODE_FUNC, \
     DEFAULT_CHAINCODE_ARGS, DEFAULT_TIMEOUT_SECONDS
 
 class ChainCodeApiMixin(object):
