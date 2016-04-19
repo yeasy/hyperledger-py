@@ -13,8 +13,9 @@ First you need to import the hyperledger client and create one instance.
 * base_url (str): Refers to the protocol+hostname+port where the Hyperledger
  service listening on.
 * version (str): The version of the API the client will use. 
-* timeout (int): The HTTP request timeout, in seconds.
-* tls (bool): Whether to use tls.
+* timeout (int): The HTTP request timeout, in seconds. Default to 
+`DEFAULT_TIMEOUT_SECONDS`.
+* tls (bool): Whether to use tls. Default to `False`.
 
 ****
 
@@ -71,7 +72,6 @@ The `chaincode_deploy()` function will deploy a chaincode to the service.
 * confidentiality_level (int): level of confidentiality. Default to 
 `CHAINCODE_CONFIDENTIAL_PUB`.
 * metadata (str): Metadata by client.
-* timeout (int): HTTP request timeout value. Default to `DEFAULT_TIMEOUT_SECONDS`.
 
 **Returns** (dict of deployed [Chaincode](https://github.com/hyperledger/fabric/blob/master/protos/fabric.proto)): The info of that
  deployed result.
@@ -101,7 +101,6 @@ deploy API.
 * confidentiality_level (int): level of confidentiality. Default to 
 `CHAINCODE_CONFIDENTIAL_PUB`.
 * metadata (str): Metadata by client.
-* timeout (int): HTTP request timeout value. Default to `DEFAULT_TIMEOUT_SECONDS`.
 
 **Returns** (dict of invoke result): The info of that invoke result.
  
@@ -130,7 +129,6 @@ deploy API.
 * confidentiality_level (int): level of confidentiality. Default to 
 `CHAINCODE_CONFIDENTIAL_PUB`.
 * metadata (str): Metadata by client.
-* timeout (int): HTTP request timeout value. Default to `DEFAULT_TIMEOUT_SECONDS`.
 
 **Returns** (dict of [Chaincode](https://github.com/hyperledger/fabric/blob/master/protos/fabric.proto)): The info of that query result.
  

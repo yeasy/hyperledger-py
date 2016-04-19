@@ -14,7 +14,7 @@
 import json
 from ..constants import CHAINCODE_CONFIDENTIAL_PUB, \
     CHAINCODE_LANG_GO, DEFAULT_CHAINCODE_METHODS, \
-    DEFAULT_CHAINCODE_PATH, DEFAULT_CHAINCODE_INIT_FUNC, DEFAULT_CHAINCODE_INIT_ARGS, DEFAULT_TIMEOUT_SECONDS
+    DEFAULT_CHAINCODE_PATH, DEFAULT_CHAINCODE_INIT_FUNC, DEFAULT_CHAINCODE_INIT_ARGS
 
 class ChainCodeApiMixin(object):
     """
@@ -29,8 +29,7 @@ class ChainCodeApiMixin(object):
                         id,
                         secure_context=None,
                         confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
-                        metadata=None,
-                        timeout=DEFAULT_TIMEOUT_SECONDS):
+                        metadata=None):
         """
         Private method to implement the deploy, invoke and query actions.
         Following http://www.jsonrpc.org/specification.
@@ -45,7 +44,6 @@ class ChainCodeApiMixin(object):
         :param secure_context: secure context if enable authentication.
         :param confidentiality_level: level of confidentiality.
         :param metadata: Metadata by client.
-        :param timeout: HTTP request timeout value.
 
         """
         if method not in DEFAULT_CHAINCODE_METHODS:
@@ -76,7 +74,7 @@ class ChainCodeApiMixin(object):
                          args=DEFAULT_CHAINCODE_INIT_ARGS, id=1,
                          secure_context=None,
                          confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
-                         metadata=None, timeout=DEFAULT_TIMEOUT_SECONDS):
+                         metadata=None):
         """
         POST host:port/chaincode
 
@@ -103,15 +101,14 @@ class ChainCodeApiMixin(object):
                                     function=function, args=args, id=id,
                                     secure_context=secure_context,
                                     confidentiality_level=confidentiality_level,
-                                    metadata=metadata, timeout=timeout)
+                                    metadata=metadata)
 
     def chaincode_invoke(self, chaincode_name, type=CHAINCODE_LANG_GO,
                          function=DEFAULT_CHAINCODE_INIT_FUNC,
                          args=DEFAULT_CHAINCODE_INIT_ARGS, id=1,
                          secure_context=None,
                          confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
-                         metadata=None,
-                         timeout=DEFAULT_TIMEOUT_SECONDS):
+                         metadata=None):
         """
         {
           "jsonrpc": "2.0",
@@ -135,15 +132,14 @@ class ChainCodeApiMixin(object):
                                     function=function, args=args, id=id,
                                     secure_context=secure_context,
                                     confidentiality_level=confidentiality_level,
-                                    metadata=metadata, timeout=timeout)
+                                    metadata=metadata)
 
     def chaincode_query(self, chaincode_name, type=CHAINCODE_LANG_GO,
                         function="query",
                         args=["a"], id=1,
                         secure_context=None,
                         confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
-                        metadata=None,
-                        timeout=DEFAULT_TIMEOUT_SECONDS):
+                        metadata=None):
         """
         {
           "jsonrpc": "2.0",
@@ -167,4 +163,4 @@ class ChainCodeApiMixin(object):
                                     function=function, args=args, id=id,
                                     secure_context=secure_context,
                                     confidentiality_level=confidentiality_level,
-                                    metadata=metadata, timeout=timeout)
+                                    metadata=metadata)
