@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 # Create the official release
+# This script should be triggered at upper dir,
+# i.e., ./script/release.sh VERSION [upload]
 #
 
 #if [ -z "$(command -v pandoc 2> /dev/null)" ]; then
@@ -29,5 +31,5 @@ fi
 #pandoc -f markdown -t rst README.md -o README.rst || exit 1
 if [[ $2 == 'upload' ]]; then
     echo "##> Uploading sdist to pypi"
-    python ../setup.py sdist bdist_wheel upload
+    python setup.py sdist bdist_wheel upload
 fi
