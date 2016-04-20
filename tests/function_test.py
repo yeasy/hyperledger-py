@@ -13,6 +13,8 @@
 from __future__ import print_function
 from hyperledger.client import Client
 
+import base64
+import json
 import sys
 import time
 
@@ -29,10 +31,18 @@ def query_value(chaincode_name, arg_list):
     """
     result = []
     for arg in arg_list:
-        res = c.chaincode_query(chaincode_name=chaincode_name, function="query",
-                                args=[arg])
-        assert res['result']['status'] == 'OK'
-        result.append(res['result']['message'])
+        for i in range(10):
+            try:
+                res = c.chaincode_query(chaincode_name=chaincode_name,
+                                        function="query",
+                                        args=[arg])
+                if res['result']['status'] == 'OK':
+                    result.append(res['result']['message'])
+                    break
+            except KeyError:
+                print(json.dumps(res, sort_keys=True, indent=4))
+                print("Wait 1 seconds for the {0} tries".format(i))
+                time.sleep(1)
 
     return result
 
@@ -48,6 +58,7 @@ if __name__ == '__main__':
               "API_URL=http://127.0.0.1:5000] [chaincode_name]")
         exit()
     API_URL = sys.argv[1]
+    chaincode_name = ""
     if len(sys.argv) == 3:
         chaincode_name = sys.argv[2]
 
@@ -66,23 +77,36 @@ if __name__ == '__main__':
     print("Test: invoke a chaincode: a-->b 1")
     res = c.chaincode_invoke(chaincode_name=chaincode_name, function="invoke",
                              args=["a", "b", "1"])
+    assert res["result"]["status"] == "OK"
+    transaction_uuid = res["result"]["message"]
+    print("Transaction id = {0}".format(transaction_uuid))
 
-    # TODO: sleep 1 second till invoke done.
+    # TODO: sleep 2 seconds till invoke done.
     time.sleep(2)
+
+    print("Test: Check the transaction content")
+    res = c.transaction_get(transaction_uuid)
+    #res["chaincodeID"] = base64.b64decode(res["chaincodeID"])
+    print(json.dumps(res, sort_keys=True, indent=4))
 
     print("Check the after value: a, b")
     print(query_value(chaincode_name, ["a", "b"]))
 
     print("Test: list the peers")
     res = c.peer_list()
-    print(res)
+    print(json.dumps(res, sort_keys=True, indent=4))
     assert len(res['peers']) > 0
 
     print("Test: list the chain")
     res = c.chain_list()
-    print(res)
+    print(json.dumps(res, sort_keys=True, indent=4))
     assert res['height'] > 0
+    print("Existing block number = {0}".format(res["height"]))
 
-    print("Test: get the first block")
-    print(c.block_get(block='1'))
+    print("Test: get the content of block 1")
+    res = c.block_get(block='1')
+    print(json.dumps(res, sort_keys=True, indent=4))
+    print("Test: get the content of block 2")
+    res = c.block_get(block='2')
+    print(json.dumps(res, sort_keys=True, indent=4))
 
