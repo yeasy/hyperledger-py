@@ -2,9 +2,9 @@
 Any kind of contribution is encouraged, e.g., bug report, question answer, 
 and submit pull-request.
 
-Before moving your hands, we highly recommend reading the doc and see the 
-test example code. They will often save lots of time to find correct usage 
-method.
+Before moving your hands, we highly recommend reading the [doc](docs) and see 
+the [test](tests) example code. They will often save lots of time to find 
+proper usage methods.
 
 
 ## Bug and Questions
