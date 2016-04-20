@@ -10,5 +10,5 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-version = "0.0.6"
+version = "0.0.7"
 version_info = tuple([int(d) for d in version.split("-")[0].split(".")])

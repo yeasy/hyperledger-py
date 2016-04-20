@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.0.7
+* Add more functional tests.
+
 ## 0.0.6
 * Add more doc on the API usage.
 
