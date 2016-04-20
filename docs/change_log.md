@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.0.8
+* Add auth sub module.
+
 ## 0.0.7
 * Add more functional tests.
 

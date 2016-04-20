@@ -15,4 +15,4 @@ from .version import version, version_info
 __version__ = version
 __title__ = 'hyperledger'
 
-from .client import Client # flake8: noqa
+from .client import Client, from_env  # flake8: noqa

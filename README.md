@@ -17,7 +17,7 @@ The latest `dev` version is on [github](https://github.com/yeasy/hyperledger-py)
 ```sh
 $ git clone https://github.com/yeasy/hyperledger-py.git
 $ cd hyperledger-py
-$ python setup install
+$ python setup.py install
 ```
 
 ## Change Logs

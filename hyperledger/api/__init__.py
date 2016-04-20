@@ -11,6 +11,7 @@
 #    limitations under the License.
 
 
+# flake8: noqa
 from .block import BlockApiMixin
 from .blockchain import BlockChainApiMixin
 from .chaincode import ChainCodeApiMixin
