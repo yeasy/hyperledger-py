@@ -17,7 +17,8 @@ class NetworkApiMixin(object):
         """
         GET /network/peers
 
-        Use the Network APIs to retrieve information about the network of peer nodes comprising the blockchain network.
+        Use the Network APIs to retrieve information about the network of peer
+        nodes comprising the blockchain network.
 
 
         ```golang

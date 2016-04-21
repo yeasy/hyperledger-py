@@ -13,24 +13,18 @@
 #    limitations under the License.
 
 import base64
-import io
 import os
 import os.path
 import json
 import shlex
-import tarfile
-import tempfile
-import warnings
 from distutils.version import StrictVersion
 from fnmatch import fnmatch
 from datetime import datetime
 
-import requests
 import six
 
-from .. import constants
 from .. import errors
-from .types import Ulimit, LogConfig
+from .. import tls
 
 
 DEFAULT_HTTP_HOST = "127.0.0.1"
@@ -49,11 +43,13 @@ def decode_json_header(header):
         data = data.decode('utf-8')
     return json.loads(data)
 
+
 def match_path(path, pattern):
     pattern = pattern.rstrip('/')
     pattern_components = pattern.split('/')
     path_components = path.split('/')[:len(pattern_components)]
     return fnmatch('/'.join(path_components), pattern)
+
 
 def compare_version(v1, v2):
     """TODO: Compare hyperledger versions
@@ -83,6 +79,7 @@ def version_lt(v1, v2):
 
 def version_gte(v1, v2):
     return not version_lt(v1, v2)
+
 
 def convert_tmpfs_mounts(tmpfs):
     if isinstance(tmpfs, dict):
@@ -132,7 +129,8 @@ def datetime_to_timestamp(dt):
 def longint(n):
     if six.PY3:
         return int(n)
-    return long(n)
+    else:
+        return long(n)  # noqa
 
 
 def parse_bytes(s):
@@ -191,11 +189,13 @@ def host_config_value_error(param, param_value):
     error_msg = 'Invalid value for {0} param: {1}'
     return ValueError(error_msg.format(param, param_value))
 
+
 def normalize_links(links):
     if isinstance(links, dict):
         links = six.iteritems(links)
 
     return ['{0}:{1}'.format(k, v) for k, v in sorted(links)]
+
 
 def split_command(command):
     if six.PY2 and not isinstance(command, six.binary_type):
@@ -209,6 +209,7 @@ def format_environment(environment):
             return key
         return '{key}={value}'.format(key=key, value=value)
     return [format_env(*var) for var in six.iteritems(environment)]
+
 
 def kwargs_from_env(ssl_version=None, assert_hostname=None, environment=None):
     if not environment:
@@ -255,4 +256,3 @@ def kwargs_from_env(ssl_version=None, assert_hostname=None, environment=None):
     )
 
     return params
-

@@ -10,10 +10,11 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-import hyperledger
+# flake8: noqa
+
 import six
 import sys
-import unittest
+# import unittest
 
 from .. import base
 
@@ -55,6 +56,7 @@ def fake_chain_list():
         u'height': 4
     }
 
+
 def fake_chaincode_deploy():
     return {
         u'jsonrpc': u'2.0',
@@ -86,6 +88,7 @@ def fake_chaincode_query(chaincode_name):
         },
         u'id': 1
     }
+
 
 class HyperledgerClientTest(base.Cleanup, base.BaseTestCase):
     def setUp(self):

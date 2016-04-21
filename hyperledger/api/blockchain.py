@@ -17,7 +17,8 @@ class BlockChainApiMixin(object):
         """
         GET /chain
 
-        Use the Chain API to retrieve the current state of the blockchain. The returned BlockchainInfo message is defined inside fabric.proto.
+        Use the Chain API to retrieve the current state of the blockchain.
+        The returned BlockchainInfo message is defined inside fabric.proto.
 
         message BlockchainInfo {
             uint64 height = 1;

@@ -12,24 +12,26 @@
 
 
 import json
-from ..constants import CHAINCODE_CONFIDENTIAL_PUB, \
-    CHAINCODE_LANG_GO, DEFAULT_CHAINCODE_METHODS, \
-    DEFAULT_CHAINCODE_PATH, DEFAULT_CHAINCODE_INIT_FUNC, DEFAULT_CHAINCODE_INIT_ARGS
+from ..constants import CHAINCODE_CONFIDENTIAL_PUB, CHAINCODE_LANG_GO, \
+    DEFAULT_CHAINCODE_METHODS, DEFAULT_CHAINCODE_PATH, \
+    DEFAULT_CHAINCODE_INIT_FUNC, DEFAULT_CHAINCODE_INIT_ARGS
+
 
 class ChainCodeApiMixin(object):
     """
+    # noqa
     See https://github.com/hyperledger/fabric/blob/master/docs/API/CoreAPI.md#chaincode.
     """
-    def _chaincode_exec(self,
-                        method,
-                        type,
-                        chaincodeID,
-                        function,
-                        args,
-                        id,
-                        secure_context=None,
-                        confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
-                        metadata=None):
+    def _exec_action(self,
+                     method,
+                     type,
+                     chaincodeID,
+                     function,
+                     args,
+                     id,
+                     secure_context=None,
+                     confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
+                     metadata=None):
         """
         Private method to implement the deploy, invoke and query actions.
         Following http://www.jsonrpc.org/specification.
@@ -96,12 +98,12 @@ class ChainCodeApiMixin(object):
 
         :return: json obj of the chaincode instance
         """
-        return self._chaincode_exec(method="deploy", type=type,
-                                    chaincodeID={"path": chaincode_path},
-                                    function=function, args=args, id=id,
-                                    secure_context=secure_context,
-                                    confidentiality_level=confidentiality_level,
-                                    metadata=metadata)
+        return self._exec_action(method="deploy", type=type,
+                                 chaincodeID={"path": chaincode_path},
+                                 function=function, args=args, id=id,
+                                 secure_context=secure_context,
+                                 confidentiality_level=confidentiality_level,
+                                 metadata=metadata)
 
     def chaincode_invoke(self, chaincode_name, type=CHAINCODE_LANG_GO,
                          function=DEFAULT_CHAINCODE_INIT_FUNC,
@@ -127,12 +129,12 @@ class ChainCodeApiMixin(object):
         }
         :return: json obj of the chaincode instance
         """
-        return self._chaincode_exec(method="invoke", type=type,
-                                    chaincodeID={"name": chaincode_name},
-                                    function=function, args=args, id=id,
-                                    secure_context=secure_context,
-                                    confidentiality_level=confidentiality_level,
-                                    metadata=metadata)
+        return self._exec_action(method="invoke", type=type,
+                                 chaincodeID={"name": chaincode_name},
+                                 function=function, args=args, id=id,
+                                 secure_context=secure_context,
+                                 confidentiality_level=confidentiality_level,
+                                 metadata=metadata)
 
     def chaincode_query(self, chaincode_name, type=CHAINCODE_LANG_GO,
                         function="query",
@@ -158,9 +160,9 @@ class ChainCodeApiMixin(object):
         }
         :return: json obj of the chaincode instance
         """
-        return self._chaincode_exec(method="query", type=type,
-                                    chaincodeID={"name": chaincode_name},
-                                    function=function, args=args, id=id,
-                                    secure_context=secure_context,
-                                    confidentiality_level=confidentiality_level,
-                                    metadata=metadata)
+        return self._exec_action(method="query", type=type,
+                                 chaincodeID={"name": chaincode_name},
+                                 function=function, args=args, id=id,
+                                 secure_context=secure_context,
+                                 confidentiality_level=confidentiality_level,
+                                 metadata=metadata)

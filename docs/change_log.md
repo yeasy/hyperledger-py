@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.9
+* Link to travis ci for checking.
+* Use tox to do qa.
+
 ## 0.0.8
 * Add auth sub module.
 

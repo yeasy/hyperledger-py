@@ -23,9 +23,10 @@ $ git config user.name "your name"
 $ git config user.email "your email"
 ```
 
-* Make some change. Commit and push to your forked project.
+* Make some change. Run tox check, then commit and push to your forked project.
 ```sh
 $ #do some change on the content
+$ tox
 $ git commit -am "Fix issue #1: change helo to hello"
 $ git push
 ```

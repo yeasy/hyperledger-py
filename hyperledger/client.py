@@ -15,15 +15,13 @@ import logging
 import requests
 import requests.exceptions
 import six
-import websocket
-
 
 from . import api
 from . import auth
 from . import constants
 from . import errors
 
-from .utils import utils, update_headers, kwargs_from_env
+from .utils import update_headers, kwargs_from_env
 
 
 def from_env(**kwargs):
@@ -106,7 +104,7 @@ class Client(
 
         args = map(six.moves.urllib.parse.quote_plus, args)
 
-        if kwargs.get('versioned_api', False): # TODO: should be True later
+        if kwargs.get('versioned_api', False):  # TODO: default to True later
             return '{0}/v{1}{2}'.format(
                 self.base_url, self._version, pathfmt.format(*args)
             )

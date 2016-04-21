@@ -77,8 +77,7 @@ class TLSParameterError(HyperledgerException):
         self.msg = msg
 
     def __str__(self):
-        return self.msg + (". TLS configurations should map the Hyperledger CLI "
-                           "client configurations. ")
+        return self.msg + ". TLS parameters Error. "
 
 
 class NullResource(HyperledgerException, ValueError):

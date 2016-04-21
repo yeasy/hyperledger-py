@@ -29,6 +29,4 @@ DEFAULT_CHAINCODE_PATH = "github.com/hyperledger/fabric/examples/chaincode" \
 DEFAULT_CHAINCODE_INIT_FUNC = "init"
 DEFAULT_CHAINCODE_INIT_ARGS = ["a", "10000", "b", "20000"]
 
-
 DEFAULT_CHAINCODE_CONFIDENTIALITY = 0
-

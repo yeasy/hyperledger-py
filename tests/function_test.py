@@ -13,7 +13,7 @@
 from __future__ import print_function
 from hyperledger.client import Client
 
-import base64
+# import base64
 import json
 import sys
 import time
@@ -29,18 +29,18 @@ def query_value(chaincode_name, arg_list):
     :param arg_list: List of arguments.
     :return: A list of values.
     """
-    result = []
+    result, resp = [], {}
     for arg in arg_list:
         for i in range(10):
             try:
-                res = c.chaincode_query(chaincode_name=chaincode_name,
-                                        function="query",
-                                        args=[arg])
-                if res['result']['status'] == 'OK':
-                    result.append(res['result']['message'])
+                resp = c.chaincode_query(chaincode_name=chaincode_name,
+                                         function="query",
+                                         args=[arg])
+                if resp['result']['status'] == 'OK':
+                    result.append(resp['result']['message'])
                     break
             except KeyError:
-                print(json.dumps(res, sort_keys=True, indent=4))
+                print(json.dumps(resp, sort_keys=True, indent=4))
                 print("Wait 1 seconds for the {0} tries".format(i))
                 time.sleep(1)
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
     print("Test: Check the transaction content")
     res = c.transaction_get(transaction_uuid)
-    #res["chaincodeID"] = base64.b64decode(res["chaincodeID"])
+    # res["chaincodeID"] = base64.b64decode(res["chaincodeID"])
     print(json.dumps(res, sort_keys=True, indent=4))
 
     print("Check the after value: a, b")
@@ -109,4 +109,3 @@ if __name__ == '__main__':
     print("Test: get the content of block 2")
     res = c.block_get(block='2')
     print(json.dumps(res, sort_keys=True, indent=4))
-
