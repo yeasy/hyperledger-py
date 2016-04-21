@@ -1,4 +1,8 @@
-# hyperledger-py [![Build Status](https://travis-ci.org/yeasy/hyperledger-py.svg?branch=master)](https://travis-ci.org/yeasy/hyperledger-py)
+# hyperledger-py 
+
+[![Build Status](https://travis-ci.org/yeasy/hyperledger-py.svg?branch=master)](https://travis-ci.org/yeasy/hyperledger-py)
+[![PyPI Version](http://img.shields.io/pypi/v/hyperledger.svg)](https://pypi.python.org/pypi/hyperledger)
+
 Python client for [Hyperledger](https://github.com/hyperledger/hyperledger).
 
 This project will follow the [Hyperledger API](https://github.com/hyperledger/fabric/tree/master/docs/API) to let uses use those APIs by import a simple python library.
