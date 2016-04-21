@@ -33,7 +33,8 @@ setup(
     author_email='yangbaohua@gmail.com',
     url='https://github.com/yeasy/hyperledger-py/',
     packages=[
-        'hyperledger', 'hyperledger.api', 'hyperledger.utils',
+        'hyperledger', 'hyperledger.api', 'hyperledger.auth',
+        'hyperledger.utils',
     ],
     platforms='any',
     install_requires=requirements,

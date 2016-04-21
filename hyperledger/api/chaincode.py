@@ -12,19 +12,47 @@
 
 
 import json
-from ..constants import DEFAULT_CHAINCODE_PATH, DEFAULT_CHAINCODE_FUNC, \
-    DEFAULT_CHAINCODE_ARGS, DEFAULT_TIMEOUT_SECONDS
+from ..constants import CHAINCODE_CONFIDENTIAL_PUB, CHAINCODE_LANG_GO, \
+    DEFAULT_CHAINCODE_METHODS, DEFAULT_CHAINCODE_PATH, \
+    DEFAULT_CHAINCODE_INIT_FUNC, DEFAULT_CHAINCODE_INIT_ARGS
+
 
 class ChainCodeApiMixin(object):
-    def _chaincode_action(self, jsonrpc="2.0", method="query", type=1,
-                          chaincodeID={},
-                          function=DEFAULT_CHAINCODE_FUNC,
-                          args=DEFAULT_CHAINCODE_ARGS,
-                          id=1, timeout=DEFAULT_TIMEOUT_SECONDS,
-                          secureContext=None, ConfidentialityLevel=0,
-                          metadata=None):
+    """
+    # noqa
+    See https://github.com/hyperledger/fabric/blob/master/docs/API/CoreAPI.md#chaincode.
+    """
+    def _exec_action(self,
+                     method,
+                     type,
+                     chaincodeID,
+                     function,
+                     args,
+                     id,
+                     secure_context=None,
+                     confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
+                     metadata=None):
+        """
+        Private method to implement the deploy, invoke and query actions.
+        Following http://www.jsonrpc.org/specification.
+
+        :param method: Chaincode action to exec. MUST within
+        DEFAULT_CHAINCODE_METHODS.
+        :param type: chaincode language type: 1 for golang, 2 for node.
+        :param chaincodeID: May include name or path.
+        :param function: chaincode function name.
+        :param args: chaincode function args.
+        :param id: JSON-RPC requires this value for a response.
+        :param secure_context: secure context if enable authentication.
+        :param confidentiality_level: level of confidentiality.
+        :param metadata: Metadata by client.
+
+        """
+        if method not in DEFAULT_CHAINCODE_METHODS:
+            self.logger.error('Non-supported chaincode method: '+method)
+
         data = {
-            "jsonrpc": jsonrpc,
+            "jsonrpc": "2.0",  # JSON-RPC protocol version. MUST be "2.0".
             "method": method,
             "params": {
                 "type": type,
@@ -36,11 +64,19 @@ class ChainCodeApiMixin(object):
             },
             "id": id
         }
+        if not secure_context:
+            data["params"]["secureContext"] = secure_context
         u = self._url("/chaincode")
         response = self._post(u, data=json.dumps(data))
         return self._result(response, True)
 
-    def chaincode_deploy(self):
+    def chaincode_deploy(self, chaincode_path=DEFAULT_CHAINCODE_PATH,
+                         type=CHAINCODE_LANG_GO,
+                         function=DEFAULT_CHAINCODE_INIT_FUNC,
+                         args=DEFAULT_CHAINCODE_INIT_ARGS, id=1,
+                         secure_context=None,
+                         confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
+                         metadata=None):
         """
         POST host:port/chaincode
 
@@ -62,10 +98,19 @@ class ChainCodeApiMixin(object):
 
         :return: json obj of the chaincode instance
         """
-        return self._chaincode_action(method="deploy",
-                                      chaincodeID={"path": DEFAULT_CHAINCODE_PATH})
+        return self._exec_action(method="deploy", type=type,
+                                 chaincodeID={"path": chaincode_path},
+                                 function=function, args=args, id=id,
+                                 secure_context=secure_context,
+                                 confidentiality_level=confidentiality_level,
+                                 metadata=metadata)
 
-    def chaincode_invoke(self, chaincode_name):
+    def chaincode_invoke(self, chaincode_name, type=CHAINCODE_LANG_GO,
+                         function=DEFAULT_CHAINCODE_INIT_FUNC,
+                         args=DEFAULT_CHAINCODE_INIT_ARGS, id=1,
+                         secure_context=None,
+                         confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
+                         metadata=None):
         """
         {
           "jsonrpc": "2.0",
@@ -84,5 +129,40 @@ class ChainCodeApiMixin(object):
         }
         :return: json obj of the chaincode instance
         """
-        return self._chaincode_action(method="invoke",
-                                      chaincodeID={"name": chaincode_name})
+        return self._exec_action(method="invoke", type=type,
+                                 chaincodeID={"name": chaincode_name},
+                                 function=function, args=args, id=id,
+                                 secure_context=secure_context,
+                                 confidentiality_level=confidentiality_level,
+                                 metadata=metadata)
+
+    def chaincode_query(self, chaincode_name, type=CHAINCODE_LANG_GO,
+                        function="query",
+                        args=["a"], id=1,
+                        secure_context=None,
+                        confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
+                        metadata=None):
+        """
+        {
+          "jsonrpc": "2.0",
+          "method": "query",
+          "params": {
+              "type": 1,
+              "chaincodeID":{
+                  "name":"52b0d803fc395b5e34d8d4a7cd69fb6aa00099b8fabed83504ac1c5d61a425aca5b3ad3bf96643ea4fdaac132c417c37b00f88fa800de7ece387d008a76d3586"
+              },
+              "ctorMsg": {
+                 "function":"query",
+                 "args":["a"]
+              }
+          },
+          "id": 3
+        }
+        :return: json obj of the chaincode instance
+        """
+        return self._exec_action(method="query", type=type,
+                                 chaincodeID={"name": chaincode_name},
+                                 function=function, args=args, id=id,
+                                 secure_context=secure_context,
+                                 confidentiality_level=confidentiality_level,
+                                 metadata=metadata)

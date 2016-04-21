@@ -13,13 +13,13 @@
 import base64
 import json
 import logging
-import os
 
 import six
 
 from .. import errors
 
 log = logging.getLogger(__name__)
+
 
 def convert_to_hostname(url):
     return url.replace('http://', '').replace('https://', '').split('/', 1)[0]
@@ -69,7 +69,6 @@ def parse_auth(entries, raise_on_error=False):
         if 'auth' not in entry:
             # Starting with engine v1.11 (API 1.23), an empty dictionary is
             # a valid value in the auths config.
-            # https://github.com/docker/compose/issues/3265
             log.debug(
                 'Auth data for {0} is absent. Client might be using a '
                 'credentials store instead.'
@@ -95,5 +94,8 @@ def load_config(config_path=None):
     Loads authentication data from a Hyperledger configuration file in the
     given root directory or if config_path is passed use given path.
     Lookup priority: TODO
+    TODO: implement this method
     """
+    if config_path:
+        return {}
     return {}

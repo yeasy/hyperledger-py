@@ -1,4 +1,4 @@
-# hyperledger-py
+# hyperledger-py [![Build Status](https://travis-ci.org/yeasy/hyperledger-py.svg?branch=master)](https://travis-ci.org/yeasy/hyperledger-py)
 Python client for [Hyperledger](https://github.com/hyperledger/hyperledger).
 
 This project will follow the [Hyperledger API](https://github.com/hyperledger/fabric/tree/master/docs/API) to let uses use those APIs by import a simple python library.
@@ -10,18 +10,27 @@ configuration and vagrant setup, please use this
 ## Installation
 The latest stable version is always available on PyPi.
 ```sh
-$ pip install hyperledger
+$ pip install hyperledger --upgrade
 ```
 
 The latest `dev` version is on [github](https://github.com/yeasy/hyperledger-py).
 ```sh
 $ git clone https://github.com/yeasy/hyperledger-py.git
 $ cd hyperledger-py
-$ python setup install
+$ python setup.py install
 ```
+
+## Change Logs
+See [change log](docs/change_log.md).
 
 ## Documentation
 The source is available in the `docs/` directory.
+
+* [API Usage](docs/api.md)
+
+## Contribution
+Please see [Contribution](CONTRIBUTION.md) and [Contribution 
+Instruction](docs/contribution.md).
 
 ## Acknowledgement
 
