@@ -138,3 +138,16 @@ deploy API.
 >>> c.chaincode_query(chaincode_name="f389486d91f54d1f8775940f24b1d3bd9f8a8e75d364e158ac92328ddacad629607a3c42be156fc4a7da7173adca2ac7d7eef29afc59c6f07f3ad14abee34f68", function="query", args=["a"])
 {u'jsonrpc': u'2.0', u'result': {u'status': u'OK', u'message': u'9980'}, u'id': 1}
 ```
+
+## Network APIs
+### peer_list
+The `peer_list()` function will retrieve information about the network of peer nodes comprising the blockchain network.
+
+**Returns** (dict of [PeerEndpoint](https://github.com/hyperledger/fabric/blob/master/protos/fabric.proto)): The info of the peer nodes.
+
+```python
+>>> from hyperledger.client import Client
+>>> c = Client(base_url="http://127.0.0.1:5000")
+>>> c.peer_list()
+{u'peers': [{u'type': 1, u'ID': {u'name': u'vp1'}, u'address': u'172.17.0.2:30303'}, {u'type': 1, u'ID': {u'name': u'vp2'}, u'address': u'172.17.0.3:30303'}]}
+```
