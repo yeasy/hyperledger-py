@@ -31,7 +31,7 @@ def query_value(chaincode_name, arg_list):
     """
     result, resp = [], {}
     for arg in arg_list:
-        for i in range(10):
+        for i in range(15):
             try:
                 resp = c.chaincode_query(chaincode_name=chaincode_name,
                                          function="query",
