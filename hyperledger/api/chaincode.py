@@ -18,7 +18,8 @@ from ..constants import CHAINCODE_CONFIDENTIAL_PUB, CHAINCODE_LANG_GO, \
 
 
 class ChainCodeApiMixin(object):
-    """
+    """ Mixin of the chaincode related APIs
+
     # noqa
     See https://github.com/hyperledger/fabric/blob/master/docs/API/CoreAPI.md#chaincode.
     """
@@ -32,8 +33,8 @@ class ChainCodeApiMixin(object):
                      secure_context=None,
                      confidentiality_level=CHAINCODE_CONFIDENTIAL_PUB,
                      metadata=None):
-        """
-        Private method to implement the deploy, invoke and query actions.
+        """ Private method to implement the deploy, invoke and query actions
+
         Following http://www.jsonrpc.org/specification.
 
         :param method: Chaincode action to exec. MUST within

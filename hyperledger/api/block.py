@@ -14,8 +14,7 @@
 class BlockApiMixin(object):
 
     def block_get(self, block):
-        """
-        GET /chain/blocks/{Block}
+        """ GET /chain/blocks/{Block}
 
         Use the Block API to retrieve the contents of various blocks from the
         blockchain. The returned Block message structure is defined inside
@@ -30,6 +29,7 @@ class BlockApiMixin(object):
             bytes previousBlockHash = 5;
         }
         ```
+
         :param block: The id of the block to retrieve
         :return: json body of the block info
         """

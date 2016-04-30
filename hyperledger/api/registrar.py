@@ -13,8 +13,7 @@
 
 class RegistrarApiMixin(object):
     def enrollmentID_get(self, enrollment_id):
-        """
-        GET /registrar/{enrollmentID}
+        """ GET /registrar/{enrollmentID}
 
         Use the Registrar APIs to manage end user registration with the CA.
         ```golang
@@ -26,6 +25,7 @@ class RegistrarApiMixin(object):
             bytes previousBlockHash = 5;
         }
         ```
+
         :param enrollment_id: The id of the enrollment to retrieve
         :return: json body of the enrollmentID info
         """

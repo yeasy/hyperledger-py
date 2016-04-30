@@ -13,8 +13,7 @@
 
 class TransactionApiMixin(object):
     def transaction_get(self, tran_uuid):
-        """
-        GET /transactions/{UUID}
+        """ GET /transactions/{UUID}
 
         Use the /transactions/{UUID} endpoint to retrieve an individual
         transaction matching the UUID from the blockchain. The returned
@@ -42,6 +41,7 @@ class TransactionApiMixin(object):
             bytes signature = 9;
         }
         ```
+
         :param tran_uuid: The uuid of the transaction to retrieve
         :return: json body of the transaction info
         """

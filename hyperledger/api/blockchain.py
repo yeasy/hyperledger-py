@@ -14,8 +14,7 @@
 class BlockChainApiMixin(object):
 
     def chain_list(self):
-        """
-        GET /chain
+        """ GET /chain
 
         Use the Chain API to retrieve the current state of the blockchain.
         The returned BlockchainInfo message is defined inside fabric.proto.
@@ -26,6 +25,7 @@ class BlockChainApiMixin(object):
             bytes previousBlockHash = 3;
         }
         ```
+
         :return: json body of the blockchain info
         """
         res = self._get(self._url("/chain"))

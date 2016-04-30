@@ -12,3 +12,4 @@ Please run `tox` after the code change, to make sure all checks passed.
 * Add more unit test cases
 * Add more docs
 * Support authentication
+* Support registration

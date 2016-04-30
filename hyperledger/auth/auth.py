@@ -39,16 +39,13 @@ def encode_header(auth):
 
 
 def parse_auth(entries, raise_on_error=False):
-    """
-    Parses authentication entries
+    """ Parses authentication entries
 
-    Args:
-      entries:        Dict of authentication entries.
-      raise_on_error: If set to true, an invalid format will raise
+    :param entries:        Dict of authentication entries.
+    :param raise_on_error: If set to true, an invalid format will raise
                       InvalidConfigFile
 
-    Returns:
-      Authentication registry.
+    :return: Authentication registry.
     """
 
     conf = {}
@@ -90,11 +87,13 @@ def parse_auth(entries, raise_on_error=False):
 
 
 def load_config(config_path=None):
-    """
-    Loads authentication data from a Hyperledger configuration file in the
-    given root directory or if config_path is passed use given path.
-    Lookup priority: TODO
+    """ Loads authentication data from a Hyperledger configuration file
+
     TODO: implement this method
+    Check the given root directory or if config_path is passed use given path.
+
+    :param config_path: configuration file path
+    :return: config dict
     """
     if config_path:
         return {}

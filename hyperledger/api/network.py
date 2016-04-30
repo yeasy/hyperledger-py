@@ -14,8 +14,7 @@
 class NetworkApiMixin(object):
 
     def peer_list(self):
-        """
-        GET /network/peers
+        """ GET /network/peers
 
         Use the Network APIs to retrieve information about the network of peer
         nodes comprising the blockchain network.
@@ -40,6 +39,7 @@ class NetworkApiMixin(object):
             string name = 1;
         }
         ```
+
         :return: json body of the network peers info
         """
         res = self._get(self._url("/network/peers"))
