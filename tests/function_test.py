@@ -31,7 +31,7 @@ def query_value(chaincode_name, arg_list):
     """
     result, resp = [], {}
     for arg in arg_list:
-        for i in range(15):
+        for i in range(20):
             try:
                 resp = c.chaincode_query(chaincode_name=chaincode_name,
                                          function="query",
@@ -40,8 +40,7 @@ def query_value(chaincode_name, arg_list):
                     result.append(resp['result']['message'])
                     break
             except KeyError:
-                print(json.dumps(resp, sort_keys=True, indent=4))
-                print("Wait 1 seconds for the {0} tries".format(i))
+                print("Wait 1 seconds for the {0} query".format(i))
                 time.sleep(1)
 
     return result
@@ -57,6 +56,7 @@ if __name__ == '__main__':
         print("Usage: python function_test.py ["
               "API_URL=http://127.0.0.1:5000] [chaincode_name]")
         exit()
+
     API_URL = sys.argv[1]
     chaincode_name = ""
     if len(sys.argv) == 3:
@@ -65,16 +65,19 @@ if __name__ == '__main__':
     c = Client(base_url=API_URL)
 
     if not chaincode_name:
-        print("Test: deploy a chaincode")
+        print(">>>Test: deploy a new chaincode")
         res = c.chaincode_deploy()
         chaincode_name = res['result']['message']
         assert res['result']['status'] == 'OK'
-        print("chaincode deployed with name " + chaincode_name)
+        print("Successfully deploy chaincode with returned name = " +
+              chaincode_name)
+        print("Wait 10 seconds to make sure deployment is done.")
+        time.sleep(10)
 
-    print("Check the initial value: a, b")
+    print(">>>Check the initial value: a, b")
     print(query_value(chaincode_name, ["a", "b"]))
 
-    print("Test: invoke a chaincode: a-->b 1")
+    print(">>>Test: invoke a chaincode: a-->b 1")
     res = c.chaincode_invoke(chaincode_name=chaincode_name, function="invoke",
                              args=["a", "b", "1"])
     assert res["result"]["status"] == "OK"
@@ -82,30 +85,32 @@ if __name__ == '__main__':
     print("Transaction id = {0}".format(transaction_uuid))
 
     # TODO: sleep 2 seconds till invoke done.
+    print("Wait 2 seconds to make sure invoke is done.")
     time.sleep(2)
 
-    print("Test: Check the transaction content")
+    print(">>>Test: Check the transaction content")
     res = c.transaction_get(transaction_uuid)
     # res["chaincodeID"] = base64.b64decode(res["chaincodeID"])
     print(json.dumps(res, sort_keys=True, indent=4))
 
-    print("Check the after value: a, b")
+    print(">>>Check the after value: a, b")
     print(query_value(chaincode_name, ["a", "b"]))
 
-    print("Test: list the peers")
+    print(">>>Test: list the peers")
     res = c.peer_list()
     print(json.dumps(res, sort_keys=True, indent=4))
     assert len(res['peers']) > 0
 
-    print("Test: list the chain")
+    print(">>>Test: list the chain")
     res = c.chain_list()
     print(json.dumps(res, sort_keys=True, indent=4))
     assert res['height'] > 0
     print("Existing block number = {0}".format(res["height"]))
 
-    print("Test: get the content of block 1")
+    print(">>>Test: get the content of block 1")
     res = c.block_get(block='1')
     print(json.dumps(res, sort_keys=True, indent=4))
-    print("Test: get the content of block 2")
+
+    print(">>>Test: get the content of block 2")
     res = c.block_get(block='2')
     print(json.dumps(res, sort_keys=True, indent=4))
