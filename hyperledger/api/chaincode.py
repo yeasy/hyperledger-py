@@ -71,7 +71,8 @@ class ChainCodeApiMixin(object):
         response = self._post(u, data=json.dumps(data))
         return self._result(response, True)
 
-    def chaincode_deploy(self, chaincode_path=DEFAULT_CHAINCODE_PATH,
+    def chaincode_deploy(self, chaincode_name=None,
+                         chaincode_path=DEFAULT_CHAINCODE_PATH,
                          type=CHAINCODE_LANG_GO,
                          function=DEFAULT_CHAINCODE_INIT_FUNC,
                          args=DEFAULT_CHAINCODE_INIT_ARGS, id=1,
@@ -97,10 +98,26 @@ class ChainCodeApiMixin(object):
           "id": 1
         }
 
+        :param chaincode_name: chaincode name is only required in dev mode
+        :param chaincode_path: path of the chaincode in local or repo URL
+        :param type:
+        :param function:
+        :param args:
+        :param id:
+        :param secure_context:
+        :param confidentiality_level:
+        :param metadata:
         :return: json obj of the chaincode instance
         """
+        if not chaincode_name:
+            chaincodeID={"path": chaincode_path}
+        else:
+            chaincodeID={
+                "name": chaincode_name,
+                "path": chaincode_path
+            }
         return self._exec_action(method="deploy", type=type,
-                                 chaincodeID={"path": chaincode_path},
+                                 chaincodeID=chaincodeID,
                                  function=function, args=args, id=id,
                                  secure_context=secure_context,
                                  confidentiality_level=confidentiality_level,

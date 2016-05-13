@@ -13,8 +13,8 @@
 import os
 import ssl
 
-from . import errors
-from .ssladapter import ssladapter
+import errors
+from ssladapter import ssladapter
 
 
 class TLSConfig(object):

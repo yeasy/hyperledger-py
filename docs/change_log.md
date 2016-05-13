@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.1
+* Fix a relative import problem.
+
+## 0.1.0
+* Refine functional test cases.
+
 ## 0.0.9
 * Link to travis ci for checking.
 * Use tox to do qa.

@@ -58,7 +58,7 @@ if __name__ == '__main__':
         exit()
 
     API_URL = sys.argv[1]
-    chaincode_name = ""
+    chaincode_name = "test"
     if len(sys.argv) == 3:
         chaincode_name = sys.argv[2]
 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
     if not chaincode_name:
         print(">>>Test: deploy a new chaincode")
-        res = c.chaincode_deploy()
+        res = c.chaincode_deploy(chaincode_name=chaincode_name)
         chaincode_name = res['result']['message']
         assert res['result']['status'] == 'OK'
         print("Successfully deploy chaincode with returned name = " +
