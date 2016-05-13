@@ -17,6 +17,7 @@ import sys
 # import unittest
 
 from .. import base
+from hyperledger.client import Client
 
 try:
     from unittest import mock
@@ -92,6 +93,7 @@ def fake_chaincode_query(chaincode_name):
 
 class HyperledgerClientTest(base.Cleanup, base.BaseTestCase):
     def setUp(self):
+        self.c = Client(base_url="http://127.0.0.1:5000")
         pass
 
     def tearDown(self):
