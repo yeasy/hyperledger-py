@@ -14,7 +14,7 @@ import os
 import ssl
 
 from . import errors
-from .ssladapter import ssladapter
+from .ssladapter import SSLAdapter
 
 
 class TLSConfig(object):
@@ -75,7 +75,7 @@ class TLSConfig(object):
         if self.cert:
             client.cert = self.cert
 
-        client.mount('https://', ssladapter.SSLAdapter(
+        client.mount('https://', SSLAdapter(
             ssl_version=self.ssl_version,
             assert_hostname=self.assert_hostname,
             assert_fingerprint=self.assert_fingerprint,

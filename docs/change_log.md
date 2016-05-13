@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.1.2
+* Add api_test code.
+
 ## 0.1.1
 * Fix a relative import problem.
 
