@@ -13,7 +13,7 @@
 import os
 import ssl
 
-import errors
+from errors import TLSParameterError
 from ssladapter import ssladapter
 
 
@@ -43,14 +43,14 @@ class TLSConfig(object):
             try:
                 tls_cert, tls_key = client_cert
             except ValueError:
-                raise errors.TLSParameterError(
+                raise TLSParameterError(
                     'client_config must be a tuple of'
                     ' (client certificate, key file)'
                 )
 
             if not (tls_cert and tls_key) or (not os.path.isfile(tls_cert) or
                not os.path.isfile(tls_key)):
-                raise errors.TLSParameterError(
+                raise TLSParameterError(
                     'Path to a certificate and key files must be provided'
                     ' through the client_config param'
                 )
@@ -60,7 +60,7 @@ class TLSConfig(object):
         self.verify = verify
         self.ca_cert = ca_cert
         if self.verify and self.ca_cert and not os.path.isfile(self.ca_cert):
-            raise errors.TLSParameterError(
+            raise TLSParameterError(
                 'Invalid CA certificate provided for `tls_ca_cert`.'
             )
 

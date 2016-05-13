@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import os
-import sys
 from setuptools import setup
 from hyperledger import version
 
@@ -10,7 +9,7 @@ SOURCE_DIR = os.path.join(ROOT_DIR)
 requirements = [
     'requests >= 2.5.0',
     'six >= 1.4.0',
-    #'websocket-client >= 0.32.0',
+    # 'websocket-client >= 0.32.0',
 ]
 
 exec(open('hyperledger/version.py').read())
