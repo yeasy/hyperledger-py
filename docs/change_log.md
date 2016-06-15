@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.1.3
+* Add more test cases.
+
 ## 0.1.2
 * Add api_test code.
 

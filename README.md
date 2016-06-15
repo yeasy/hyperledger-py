@@ -5,7 +5,7 @@
 
 Python client for [Hyperledger](https://github.com/hyperledger/hyperledger).
 
-This project will follow the [Hyperledger API](https://github.com/hyperledger/fabric/tree/master/docs/API) to let users use those APIs by import a simple python library. e.g.,
+This project will follow the [Hyperledger API](https://github.com/hyperledger/fabric/tree/master/docs/API) to let users use those APIs by importing a simple python library. e.g.,
 
 ```python
 >>> from hyperledger.client import Client

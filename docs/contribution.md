@@ -23,7 +23,8 @@ $ git config user.name "your name"
 $ git config user.email "your email"
 ```
 
-* Make some change. Run tox check, then commit and push to your forked project.
+* Make some change. Run tox check to make sure all test cases are passed, then
+commit and push to your forked project.
 ```sh
 $ #do some change on the content
 $ tox
