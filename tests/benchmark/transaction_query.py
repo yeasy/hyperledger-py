@@ -14,15 +14,15 @@ from __future__ import print_function
 from hyperledger.client import Client
 
 # import base64
-import json
+# import json
 import sys
 import time
 import timeit
-#from timeit import Timer
+# from timeit import Timer
 
 API_URL = 'http://127.0.0.1:5000'
 
-DEPLOY_WAIT=15
+DEPLOY_WAIT = 15
 
 
 def query(chaincode_name, arg_list, validate=False):
@@ -45,11 +45,11 @@ def query(chaincode_name, arg_list, validate=False):
             continue
         else:
             print("Error when querying")
-        #try:
-        #except KeyError as e:
-        #    print("Exception")
-        #    print(e)
-        #    return None
+        # try:
+        # except KeyError as e:
+        #     print("Exception")
+        #     print(e)
+        #     return None
 
     if validate:
         return result
@@ -66,9 +66,9 @@ if __name__ == '__main__':
               "API_URL=http://127.0.0.1:5000] [chaincode_name]")
         exit()
 
+    chaincode_name = ""
     if len(sys.argv) >= 2:
         API_URL = sys.argv[1]
-    chaincode_name = ""
     if len(sys.argv) >= 3:
         chaincode_name = sys.argv[2]
 
@@ -86,36 +86,17 @@ if __name__ == '__main__':
         print("Wait {}s to make sure deployment is done.".format(DEPLOY_WAIT))
         time.sleep(DEPLOY_WAIT)
 
-
     print(">>>Check the initial value: a, b")
     values = query(chaincode_name, ["a", "b"], validate=True)
     print(values)
-    #assert values == ['10000', '20000']
+    # assert values == ['10000', '20000']
 
-    duration=timeit.timeit("query(chaincode_name, ['a', 'b'])",
-                           number=2000,
-                           setup="from __main__ import query, chaincode_name")
+    duration = timeit.timeit(
+        "query(chaincode_name, ['a', 'b'])",
+        number=2000,
+        setup="from __main__ import query, chaincode_name")
     print("Query 2000 times, and calculate the time={}".format(duration))
 
     print(">>>Check the value again: a, b")
     values = query(chaincode_name, ["a", "b"], validate=True)
     print(values)
-
-    exit(0)
-
-    print(">>>Test: invoke a chaincode: a-->b 1")
-    res = c.chaincode_invoke(chaincode_name=chaincode_name, function="invoke",
-                             args=["a", "b", "1"])
-    assert res["result"]["status"] == "OK"
-    transaction_uuid = res["result"]["message"]
-    print("Transaction id = {0}".format(transaction_uuid))
-
-    # TODO: sleep 3 seconds till invoke done.
-    print("Wait 5 seconds to make sure invoke is done.")
-    time.sleep(5)
-
-    print(">>>Check the after value: a, b")
-    values = query(chaincode_name, ["a", "b"])
-    print(values)
-    assert values == ['9999', '20001']
-    time.sleep(1)

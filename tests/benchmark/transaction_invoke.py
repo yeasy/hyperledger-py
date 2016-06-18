@@ -14,15 +14,14 @@ from __future__ import print_function
 from hyperledger.client import Client
 
 # import base64
-import json
+# import json
 import sys
 import time
 import timeit
-#from timeit import Timer
 
 API_URL = 'http://127.0.0.1:5000'
 
-DEPLOY_WAIT=15
+DEPLOY_WAIT = 15
 
 
 def query_value(chaincode_name, arg_list, validate=False):
@@ -45,18 +44,18 @@ def query_value(chaincode_name, arg_list, validate=False):
             continue
         else:
             print("Error when querying")
-        #try:
-        #except KeyError as e:
-        #    print("Exception")
-        #    print(e)
-        #    return None
+        # try:
+        # except KeyError as e:
+        #     print("Exception")
+        #     print(e)
+        #     return None
 
     if validate:
         return result
 
 
 def invoke(chaincode_name, arg=["a", "b", "1"], validate=False):
-    #print(">>>Test: invoke a chaincode: a-->b 1")
+    # print(">>>Test: invoke a chaincode: a-->b 1")
     res = c.chaincode_invoke(chaincode_name=chaincode_name, function="invoke",
                              args=arg)
     if validate:
@@ -96,32 +95,18 @@ if __name__ == '__main__':
         print("Wait {}s to make sure deployment is done.".format(DEPLOY_WAIT))
         time.sleep(DEPLOY_WAIT)
 
-
     print(">>>Check the initial value: a, b")
     values = query_value(chaincode_name, ["a", "b"], validate=True)
     print(values)
-    #assert values == ['10000', '20000']
+    # assert values == ['10000', '20000']
 
-    duration=timeit.timeit("invoke(chaincode_name)",
-                           number=2000,
-                           setup="from __main__ import invoke, chaincode_name")
+    duration = timeit.timeit(
+        "invoke(chaincode_name)",
+        number=2000,
+        setup="from __main__ import invoke, chaincode_name")
     print("invoke 2000 times, and calculate the time={}".format(duration))
 
     time.sleep(3)
     print(">>>Check the value again: a, b")
     values = query_value(chaincode_name, ["a", "b"], validate=True)
     print(values)
-
-    exit(0)
-
-
-
-    # TODO: sleep 3 seconds till invoke done.
-    print("Wait 5 seconds to make sure invoke is done.")
-    time.sleep(5)
-
-    print(">>>Check the after value: a, b")
-    values = query_value(chaincode_name, ["a", "b"])
-    print(values)
-    assert values == ['9999', '20001']
-    time.sleep(1)
