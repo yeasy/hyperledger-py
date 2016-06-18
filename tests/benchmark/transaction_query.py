@@ -17,11 +17,15 @@ from hyperledger.client import Client
 import json
 import sys
 import time
+import timeit
+#from timeit import Timer
 
 API_URL = 'http://127.0.0.1:5000'
 
+DEPLOY_WAIT=15
 
-def query_value(chaincode_name, arg_list):
+
+def query(chaincode_name, arg_list, validate=False):
     """
     Query a list of values.
 
@@ -30,21 +34,25 @@ def query_value(chaincode_name, arg_list):
     :return: A list of values.
     """
     result, resp = [], {}
-    print("Query value will try at most 20 times.")
     for arg in arg_list:
-        for i in range(20):
-            try:
-                resp = c.chaincode_query(chaincode_name=chaincode_name,
-                                         function="query",
-                                         args=[arg])
-                if resp['result']['status'] == 'OK':
-                    result.append(resp['result']['message'])
-                    break
-            except KeyError:
-                print("Wait 1 seconds for the {0} query".format(i))
-                time.sleep(1)
+        resp = c.chaincode_query(chaincode_name=chaincode_name,
+                                 function="query",
+                                 args=[arg])
+        if not validate:
+            continue
+        if resp['result']['status'] == 'OK':
+            result.append(resp['result']['message'])
+            continue
+        else:
+            print("Error when querying")
+        #try:
+        #except KeyError as e:
+        #    print("Exception")
+        #    print(e)
+        #    return None
 
-    return result
+    if validate:
+        return result
 
 
 # Usage:
@@ -53,14 +61,15 @@ def query_value(chaincode_name, arg_list):
 # E.g.,
 # "f389486d91f54d1f8775940f24b1d3bd9f8a8e75d364e158ac92328ddacad629607a3c42be156fc4a7da7173adca2ac7d7eef29afc59c6f07f3ad14abee34f68"
 if __name__ == '__main__':
-    if len(sys.argv) not in [2, 3]:
+    if len(sys.argv) not in [1, 2, 3]:
         print("Usage: python function_test.py ["
               "API_URL=http://127.0.0.1:5000] [chaincode_name]")
         exit()
 
-    API_URL = sys.argv[1]
+    if len(sys.argv) >= 2:
+        API_URL = sys.argv[1]
     chaincode_name = ""
-    if len(sys.argv) == 3:
+    if len(sys.argv) >= 3:
         chaincode_name = sys.argv[2]
 
     c = Client(base_url=API_URL)
@@ -74,13 +83,25 @@ if __name__ == '__main__':
         assert res['result']['status'] == 'OK'
         print("Successfully deploy chaincode with returned name = " +
               chaincode_name)
-        print("Wait 15 seconds to make sure deployment is done.")
-        time.sleep(15)
+        print("Wait {}s to make sure deployment is done.".format(DEPLOY_WAIT))
+        time.sleep(DEPLOY_WAIT)
+
 
     print(">>>Check the initial value: a, b")
-    values = query_value(chaincode_name, ["a", "b"])
+    values = query(chaincode_name, ["a", "b"], validate=True)
     print(values)
-    assert values == ['10000', '20000']
+    #assert values == ['10000', '20000']
+
+    duration=timeit.timeit("query(chaincode_name, ['a', 'b'])",
+                           number=2000,
+                           setup="from __main__ import query, chaincode_name")
+    print("Query 2000 times, and calculate the time={}".format(duration))
+
+    print(">>>Check the value again: a, b")
+    values = query(chaincode_name, ["a", "b"], validate=True)
+    print(values)
+
+    exit(0)
 
     print(">>>Test: invoke a chaincode: a-->b 1")
     res = c.chaincode_invoke(chaincode_name=chaincode_name, function="invoke",
@@ -94,32 +115,7 @@ if __name__ == '__main__':
     time.sleep(5)
 
     print(">>>Check the after value: a, b")
-    values = query_value(chaincode_name, ["a", "b"])
+    values = query(chaincode_name, ["a", "b"])
     print(values)
     assert values == ['9999', '20001']
     time.sleep(1)
-
-    print(">>>Test: Check the transaction content")
-    res = c.transaction_get(transaction_uuid)
-    # res["chaincodeID"] = base64.b64decode(res["chaincodeID"])
-    print(json.dumps(res, sort_keys=True, indent=4))
-    assert res["uuid"] == transaction_uuid
-
-    print(">>>Test: list the peers")
-    res = c.peer_list()
-    print(json.dumps(res, sort_keys=True, indent=4))
-    assert len(res['peers']) > 0
-
-    print(">>>Test: list the chain")
-    res = c.chain_list()
-    print(json.dumps(res, sort_keys=True, indent=4))
-    assert res['height'] > 0
-    print("Existing block number = {0}".format(res["height"]))
-
-    print(">>>Test: get the content of block 1")
-    res = c.block_get(block='1')
-    print(json.dumps(res, sort_keys=True, indent=4))
-
-    print(">>>Test: get the content of block 2")
-    res = c.block_get(block='2')
-    print(json.dumps(res, sort_keys=True, indent=4))

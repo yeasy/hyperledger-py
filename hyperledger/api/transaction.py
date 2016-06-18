@@ -46,4 +46,4 @@ class TransactionApiMixin(object):
         :return: json body of the transaction info
         """
         res = self._get(self._url("/transactions/{0}", tran_uuid))
-        return self._result(res, True)
+        return self._result(res, json=True)
