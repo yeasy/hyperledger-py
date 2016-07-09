@@ -106,11 +106,12 @@ class ChainCodeApiMixin(object):
         :param secure_context:
         :param confidentiality_level:
         :param metadata:
-        :param chaincode_name: chaincode name is only required in dev mode. If chaincode_name then
-        chaincodeID will use chaincode_name
+        :param chaincode_name: chaincode name is only required in dev mode. If
+        chaincode_name then chaincodeID will use chaincode_name
         :return: json obj of the chaincode instance
         """
-        chaincodeID = {"name": chaincode_name} if chaincode_name else {"path": chaincode_path}
+        chaincodeID = {"name": chaincode_name} if chaincode_name else \
+                      {"path": chaincode_path}
         return self._exec_action(method="deploy", type=type,
                                  chaincodeID=chaincodeID,
                                  function=function, args=args, id=id,
