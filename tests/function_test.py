@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     API_URL = sys.argv[1]
     chaincode_name = ""
-    #chaincode_name = "7be1529ee16969baf9f3156247a0ee8e7eee99a6a0a816776acff65e6e1def71249f4cb1cad5e0f0b60b25dd2a6975efb282741c0e1ecc53fa8c10a9aaa31137"
+    # chaincode_name = "7be1529ee16969baf9f3156247a0ee8e7eee99a6a0a816776acff65e6e1def71249f4cb1cad5e0f0b60b25dd2a6975efb282741c0e1ecc53fa8c10a9aaa31137"  # noqa
     if len(sys.argv) == 3:
         chaincode_name = sys.argv[2]
 
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     print(">>>Check the initial value: a, b")
     values = query_value(chaincode_name, ["a", "b"])
     print(values)
-    #assert values == ['10000', '20000']
+    # assert values == ['10000', '20000']
 
     print(">>>Test: invoke a chaincode: a-->b 1")
     res = c.chaincode_invoke(chaincode_name=chaincode_name, function="invoke",
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     values = query_value(chaincode_name, ["a", "b"])
     print(values)
     exit(0)
-    #assert values == ['9999', '20001']
+    # assert values == ['9999', '20001']
     time.sleep(1)
 
     print(">>>Test: Check the transaction content")
