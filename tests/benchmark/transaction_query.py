@@ -20,7 +20,7 @@ import time
 import timeit
 # from timeit import Timer
 
-API_URL = 'http://127.0.0.1:5000'
+API_URL = 'http://127.0.0.1:7050'
 
 DEPLOY_WAIT = 15
 
@@ -56,14 +56,14 @@ def query(chaincode_name, arg_list, validate=False):
 
 
 # Usage:
-# * python function_test.py [API_URL=http://127.0.0.1:5000] will deploy first
-# * python function_test.py [API_URL=http://127.0.0.1:5000] [chaincode_name]
+# * python function_test.py [API_URL=http://127.0.0.1:7050] will deploy first
+# * python function_test.py [API_URL=http://127.0.0.1:7050] [chaincode_name]
 # E.g.,
 # "f389486d91f54d1f8775940f24b1d3bd9f8a8e75d364e158ac92328ddacad629607a3c42be156fc4a7da7173adca2ac7d7eef29afc59c6f07f3ad14abee34f68"
 if __name__ == '__main__':
     if len(sys.argv) not in [1, 2, 3]:
         print("Usage: python function_test.py ["
-              "API_URL=http://127.0.0.1:5000] [chaincode_name]")
+              "API_URL=http://127.0.0.1:7050] [chaincode_name]")
         exit()
 
     chaincode_name = ""

@@ -13,7 +13,7 @@
 DEFAULT_API_VERSION = "0.1.0"
 DEFAULT_TIMEOUT_SECONDS = 60
 
-DEFAULT_BASE_URL = "http://127.0.0.1:5000"
+DEFAULT_BASE_URL = "http://127.0.0.1:7050"
 
 
 # Chaincode related values

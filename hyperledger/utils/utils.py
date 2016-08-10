@@ -28,7 +28,7 @@ from .. import tls
 
 
 DEFAULT_HTTP_HOST = "127.0.0.1"
-DEFAULT_HTTP_PORT = "5000"
+DEFAULT_HTTP_PORT = "7050"
 BYTE_UNITS = {
     'b': 1,
     'k': 1024,

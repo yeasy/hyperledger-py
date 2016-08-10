@@ -9,9 +9,9 @@ This project will follow the [Hyperledger API](https://github.com/hyperledger/fa
 
 ```python
 >>> from hyperledger.client import Client
->>> c = Client(base_url="http://127.0.0.1:5000")
+>>> c = Client(base_url="http://127.0.0.1:7050")
 >>> c.peer_list()
-{u'peers': [{u'type': 1, u'ID': {u'name': u'vp1'}, u'address': u'172.17.0.2:30303'}, {u'type': 1, u'ID': {u'name': u'vp2'}, u'address': u'172.17.0.3:30303'}]}
+{u'peers': [{u'type': 1, u'ID': {u'name': u'vp1'}, u'address': u'172.17.0.2:7051'}, {u'type': 1, u'ID': {u'name': u'vp2'}, u'address': u'172.17.0.3:7051'}]}
 ```
 
 If you want a quick start with a hyperledger cluster without any local 
