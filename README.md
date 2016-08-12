@@ -3,20 +3,15 @@
 [![Build Status](https://travis-ci.org/yeasy/hyperledger-py.svg?branch=master)](https://travis-ci.org/yeasy/hyperledger-py)
 [![PyPI Version](http://img.shields.io/pypi/v/hyperledger.svg)](https://pypi.python.org/pypi/hyperledger)
 
-Python client for [Hyperledger](https://github.com/hyperledger/hyperledger).
+**Currently the project is under reconstruction based on gRPC. To use the legacy restful base one, please switch to the `restful` branch code.**
 
-This project will follow the [Hyperledger API](https://github.com/hyperledger/fabric/tree/master/docs/API) to let users use those APIs by importing a simple python library. e.g.,
+Python SDK client for [Hyperledger](https://github.com/hyperledger/hyperledger).
 
-```python
->>> from hyperledger.client import Client
->>> c = Client(base_url="http://127.0.0.1:7050")
->>> c.peer_list()
-{u'peers': [{u'type': 1, u'ID': {u'name': u'vp1'}, u'address': u'172.17.0.2:7051'}, {u'type': 1, u'ID': {u'name': u'vp2'}, u'address': u'172.17.0.3:7051'}]}
-```
+This project will follow the [Hyperledger SDK Spec](https://github.com/hyperledger/fabric/wiki/Client-SDK-Specification) to let users use those APIs by importing a simple python library.
 
-If you want a quick start with a hyperledger cluster without any local 
+*If you want a quick start with a hyperledger cluster without any local
 configuration and vagrant setup, please use this 
-[compose-file](https://github.com/yeasy/docker-compose-files#hyperledger).
+[compose-file](https://github.com/yeasy/docker-compose-files#hyperledger).*
 
 ## Installation
 The latest stable version is always available on PyPi.
@@ -28,8 +23,7 @@ The latest `dev` version is on [github](https://github.com/yeasy/hyperledger-py)
 ```sh
 $ git clone https://github.com/yeasy/hyperledger-py.git
 $ cd hyperledger-py
-$ pip install -r requirements.txt
-$ python setup.py install
+$ make install
 ```
 
 ## Change Logs
@@ -51,16 +45,19 @@ $ python tests/function_test.py HYPERLEDGER_API_URL
 ```
 
 ## Contribution
-Please see [Contribution](CONTRIBUTION.md) and [Contribution 
-Instruction](docs/contribution.md).
+Please see [Contribution Instruction](docs/contribution.md).
+
+## TODO Items
+
+* Add more unit test cases
+* Update documentations
+* Reconstruct based on gRPC
 
 ## Acknowledgement
 
 This work is highly inspired by the following projects:
 
  * [Hyperledger](https://github.com/hyperledger/hyperledger)
- * [requests](https://pypi.python.org/pypi/requests)
- * [docker-py](https://github.com/docker/docker-py)
 
 ## License
 

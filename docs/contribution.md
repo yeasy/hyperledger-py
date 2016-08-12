@@ -1,6 +1,5 @@
 # Contribution
-Any kind of contribution is encouraged, e.g., bug report, question answer, 
-and submit pull-request.
+Any kind of contribution is encouraged, e.g., bug report, question answer, and submit pull-request.
 
 Before moving your hands, we highly recommend reading the [doc](docs) and see 
 the [test](tests) example code. They will often save lots of time to find 
