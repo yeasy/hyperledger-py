@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 from hyperledger import version
 
 ROOT_DIR = os.path.dirname(__file__)
@@ -31,10 +31,7 @@ setup(
     author='Baohua Yang',
     author_email='yangbaohua@gmail.com',
     url='https://github.com/yeasy/hyperledger-py/',
-    packages=[
-        'hyperledger', 'hyperledger.api', 'hyperledger.auth',
-        'hyperledger.ssladapter', 'hyperledger.utils',
-    ],
+    packages=find_packages(include=['hyperledger']),
     platforms='any',
     install_requires=requirements,
     tests_require=test_requirements,

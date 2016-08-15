@@ -29,4 +29,4 @@ install:
 	pip install tox
 
 clean:
-	rm -rf build dist
+	rm -rf build dist *.egg-info
