@@ -22,11 +22,11 @@ with open('./test-requirements.txt') as test_reqs_txt:
 
 
 setup(
-    name='hyperledger',
+    name='hfc',
     version=version,
     keywords=('hyperledger', 'blockchain'),
     license='Apache License v2.0',
-    description="Python client for Hyperledger.",
+    description="Client for Hyperledger Fabric.",
     long_description=long_description,
     author='Baohua Yang',
     author_email='yangbaohua@gmail.com',
