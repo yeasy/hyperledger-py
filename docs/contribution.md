@@ -1,9 +1,11 @@
 # Contribution
-Any kind of contribution is encouraged, e.g., bug report, question answer, and submit pull-request.
+Any contribution is encouraged, e.g., bug report, question answer, and submit pull-request.
 
 Before moving your hands, we highly recommend reading the [doc](docs) and see 
 the [test](tests) example code. They will often save lots of time to find 
 proper usage methods.
+
+**Every feature MUST have test cases.**
 
 
 ## Bug and Questions
@@ -22,8 +24,7 @@ $ git config user.name "your name"
 $ git config user.email "your email"
 ```
 
-* Make some change. Run tox check to make sure all test cases are passed, then
-commit and push to your forked project.
+* Make some change (may need to update the [change log](docs/change_log.md)). Make sure to run tox and pass all test cases, then commit and push to your forked project.
 ```sh
 $ #do some change on the content
 $ tox

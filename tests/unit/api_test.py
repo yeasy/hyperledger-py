@@ -93,7 +93,7 @@ def fake_chaincode_query(chaincode_name):
 
 class HyperledgerClientTest(base.Cleanup, base.BaseTestCase):
     def setUp(self):
-        self.c = Client(base_url="http://127.0.0.1:7050")
+        self.c = Client()
 
     def tearDown(self):
         pass

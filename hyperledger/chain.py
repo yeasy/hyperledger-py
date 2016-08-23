@@ -12,5 +12,4 @@ class Chain(object):
         self.pre_fetch_mode = True
         self.deploy_wait_time = 20
         self.invoke_wait_time = 5
-
         self.name = name

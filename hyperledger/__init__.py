@@ -10,9 +10,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-from .version import version, version_info
+from .version import version
 
 __version__ = version
-__title__ = 'hyperledger'
-__author__ = 'Baohua Yang'
-
+__title__ = 'hyperledger fabric SDK'

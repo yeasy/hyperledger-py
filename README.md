@@ -1,9 +1,9 @@
 # hyperledger-py 
 
-[![Build Status](https://travis-ci.org/yeasy/hyperledger-py.svg?branch=master)](https://travis-ci.org/yeasy/hyperledger-py)
+[![Build Status](https://travis-ci.org/yeasy/hyperledger-py.svg?branch=grpc)](https://travis-ci.org/yeasy/hyperledger-py)
 [![PyPI Version](http://img.shields.io/pypi/v/hyperledger.svg)](https://pypi.python.org/pypi/hyperledger)
 
-**Currently the project is under reconstruction based on gRPC. To use the legacy restful base one, please switch to the `restful` branch code.**
+**Currently the project is under reconstruction based on gRPC. To use the legacy restful base one, please switch to the `restful` branch.**
 
 Python SDK client for [Hyperledger](https://github.com/hyperledger/hyperledger).
 
@@ -32,9 +32,9 @@ See [change log](docs/change_log.md).
 ## Documentation
 The source is available in the [docs](docs) directory.
 
-* [API Usage](docs/api.md)
+* [Design Spec](docs/design.md)
 
-## Testing
+## Testing(TBD)
 All testing code is under [tests](tests) directory.
 
 After installation, you can run a quick full-functional testing (deploy,
@@ -49,15 +49,14 @@ Please see [Contribution Instruction](docs/contribution.md).
 
 ## TODO Items
 
-* Add more unit test cases
-* Update documentations
+* Write the api design doc
 * Reconstruct based on gRPC
 
 ## Acknowledgement
 
 This work is highly inspired by the following projects:
 
- * [Hyperledger](https://github.com/hyperledger/hyperledger)
+ * [Hyperledger fabric](https://github.com/hyperledger/fabric)
 
 ## License
 
