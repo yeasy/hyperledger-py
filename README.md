@@ -1,11 +1,15 @@
-# hyperledger-py 
+# hyperledger-py
 
 [![Build Status](https://travis-ci.org/yeasy/hyperledger-py.svg?branch=master)](https://travis-ci.org/yeasy/hyperledger-py)
 [![PyPI Version](http://img.shields.io/pypi/v/hyperledger.svg)](https://pypi.python.org/pypi/hyperledger)
 
-Python client for [Hyperledger](https://github.com/hyperledger/hyperledger).
+Python SDK for [Hyperledger fabric](https://github.com/hyperledger/fabric).
 
-This project will follow the [Hyperledger API](https://github.com/hyperledger/fabric/tree/master/docs/API) to let users use those APIs by importing a simple python library. e.g.,
+Currently, we support two branches: 
+* [restful](https://github.com/yeasy/hyperledger-py/tree/restful)(Stable) : implementated based on restful APIs.
+* [grpc](https://github.com/yeasy/hyperledger-py/tree/grpc)(Under development): implementated based on grpc.
+
+This restful branch will follow the [Hyperledger API](https://github.com/hyperledger/fabric/tree/master/docs/API) to let users use those APIs by importing a simple python library. e.g.,
 
 ```python
 >>> from hyperledger.client import Client
@@ -19,12 +23,13 @@ configuration and vagrant setup, please use this
 [compose-file](https://github.com/yeasy/docker-compose-files#hyperledger).
 
 ## Installation
-The latest stable version is always available on PyPi.
+The stable version is always available on PyPi.
+
 ```sh
 $ pip install hyperledger --upgrade
 ```
 
-The latest `dev` version is on [github](https://github.com/yeasy/hyperledger-py).
+The latest version is on [github](https://github.com/yeasy/hyperledger-py).
 ```sh
 $ git clone https://github.com/yeasy/hyperledger-py.git
 $ cd hyperledger-py
@@ -51,8 +56,7 @@ $ python tests/function_test.py HYPERLEDGER_API_URL
 ```
 
 ## Contribution
-Please see [Contribution](CONTRIBUTION.md) and [Contribution 
-Instruction](docs/contribution.md).
+Please see [Contribution Instruction](docs/contribution.md).
 
 ## Acknowledgement
 
