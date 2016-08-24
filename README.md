@@ -7,11 +7,12 @@
 
 Python SDK client for [Hyperledger](https://github.com/hyperledger/hyperledger).
 
-This project will follow the [Hyperledger SDK Spec](https://github.com/hyperledger/fabric/wiki/Client-SDK-Specification) to let users use those APIs by importing a simple python library.
+This project will follow the [Hyperledger SDK Spec](https://github.com/hyperledger/fabric/wiki/Client-SDK-Specification) to let users use those APIs by importing a simple Python library.
 
-*If you want a quick start with a hyperledger cluster without any local
+*If you want a quick start with a hyperledger fabric cluster without any local
 configuration and vagrant setup, please use this 
-[compose-file](https://github.com/yeasy/docker-compose-files#hyperledger).*
+[compose-file](https://github.com/yeasy/docker-compose-files/tree/master/hyperledger).*
+
 
 ## Installation
 The stable version is always available on PyPi.
