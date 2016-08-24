@@ -14,12 +14,12 @@ configuration and vagrant setup, please use this
 [compose-file](https://github.com/yeasy/docker-compose-files#hyperledger).*
 
 ## Installation
-The latest stable version is always available on PyPi.
+The stable version is always available on PyPi.
 ```sh
 $ pip install hyperledger --upgrade
 ```
 
-The latest `dev` version is on [github](https://github.com/yeasy/hyperledger-py).
+The latest version is on [github](https://github.com/yeasy/hyperledger-py).
 ```sh
 $ git clone https://github.com/yeasy/hyperledger-py.git
 $ cd hyperledger-py
