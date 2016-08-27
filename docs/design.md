@@ -10,6 +10,7 @@ In total, we have several modules:
 * MemberService: Membership related operations.
 
 ## Client
+Interaction with end user.
 
 ## Chain
 
