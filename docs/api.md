@@ -22,8 +22,7 @@ First you need to import the hyperledger client and create one instance.
 ## Block APIs
 
 ### block_get
-The `block_get()` function will get a specific block and return as a json 
-object.
+The `block_get()` function will get a specific block and return as a json object.
 
 **Params**
 
