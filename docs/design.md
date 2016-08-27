@@ -1,4 +1,4 @@
-# SDK Design Spec
+# Fabric SDK Design Spec
 
 Here we discuss the design principle and architecture consideration.
 
