@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/yeasy/hyperledger-py.svg?branch=master)](https://travis-ci.org/yeasy/hyperledger-py)
 [![PyPI Version](http://img.shields.io/pypi/v/hyperledger.svg)](https://pypi.python.org/pypi/hyperledger)
 
+**The project has been accepted by Hyperledger Community as [fabric-sdk-py](https://gerrit.hyperledger.org/r/#/admin/projects/fabric-sdk-py).**
+
 Python SDK for [Hyperledger fabric](https://github.com/hyperledger/fabric).
 
 Currently, we support two branches: 
