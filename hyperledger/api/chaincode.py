@@ -65,7 +65,7 @@ class ChainCodeApiMixin(object):
             },
             "id": id
         }
-        if not secure_context:
+        if secure_context:
             data["params"]["secureContext"] = secure_context
         u = self._url("/chaincode")
         response = self._post(u, data=json.dumps(data))
